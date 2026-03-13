@@ -294,6 +294,17 @@ export const OpenClawSchema = z
           .optional(),
         redactSensitive: z.union([z.literal("off"), z.literal("tools")]).optional(),
         redactPatterns: z.array(z.string()).optional(),
+        mask: z
+          .array(
+            z
+              .object({
+                name: z.string(),
+                regex: z.string(),
+                replacement: z.string(),
+              })
+              .strict(),
+          )
+          .optional(),
       })
       .strict()
       .optional(),

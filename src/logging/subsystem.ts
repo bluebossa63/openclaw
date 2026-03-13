@@ -10,6 +10,7 @@ import {
 } from "./console.js";
 import { type LogLevel, levelToMinLevel } from "./levels.js";
 import { getChildLogger, isFileLogLevelEnabled } from "./logger.js";
+import { applyMaskRules, getMaskRules } from "./mask.js";
 import { loggingState } from "./state.js";
 
 type LogObj = { date?: Date } & Record<string, unknown>;
@@ -314,6 +315,9 @@ export function createSubsystemLogger(subsystem: string): SubsystemLogger {
     return fileLogger;
   };
   const emit = (level: LogLevel, message: string, meta?: Record<string, unknown>) => {
+    // Apply credential masking before any output — covers both console and file paths.
+    const maskRules = getMaskRules();
+    const message_ = applyMaskRules(message, maskRules);
     const consoleSettings = getConsoleSettings();
     const consoleEnabled =
       shouldLogToConsole(level, { level: consoleSettings.level }) &&
@@ -334,12 +338,12 @@ export function createSubsystemLogger(subsystem: string): SubsystemLogger {
       fileMeta = Object.keys(rest).length > 0 ? rest : undefined;
     }
     if (fileEnabled) {
-      logToFile(getFileLogger(), level, message, fileMeta);
+      logToFile(getFileLogger(), level, message_, fileMeta);
     }
     if (!consoleEnabled) {
       return;
     }
-    const consoleMessage = consoleMessageOverride ?? message;
+    const consoleMessage = consoleMessageOverride ?? message_;
     if (
       shouldSuppressProbeConsoleLine({
         level,
@@ -353,7 +357,7 @@ export function createSubsystemLogger(subsystem: string): SubsystemLogger {
     const line = formatConsoleLine({
       level,
       subsystem,
-      message: consoleSettings.style === "json" ? message : consoleMessage,
+      message: consoleSettings.style === "json" ? message_ : consoleMessage,
       style: consoleSettings.style,
       meta: fileMeta,
     });

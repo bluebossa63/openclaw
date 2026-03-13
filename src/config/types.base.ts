@@ -165,6 +165,16 @@ export type SessionMaintenanceConfig = {
   highWaterBytes?: number | string;
 };
 
+/** A single named regex masking rule applied to all log output. */
+export type MaskRule = {
+  /** Human-readable name used in error messages and diagnostics. */
+  name: string;
+  /** JavaScript regex pattern string. The `g` flag is always added at compile time. */
+  regex: string;
+  /** Replacement string — supports capture-group back-references ($1, $2, …). */
+  replacement: string;
+};
+
 export type LoggingConfig = {
   level?: "silent" | "fatal" | "error" | "warn" | "info" | "debug" | "trace";
   file?: string;
@@ -176,6 +186,8 @@ export type LoggingConfig = {
   redactSensitive?: "off" | "tools";
   /** Regex patterns used to redact sensitive tokens (defaults apply when unset). */
   redactPatterns?: string[];
+  /** Named regex rules applied to every log line before it is written to console or file. */
+  mask?: MaskRule[];
 };
 
 export type DiagnosticsOtelConfig = {
