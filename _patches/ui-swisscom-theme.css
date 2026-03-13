@@ -1,0 +1,178 @@
+/* =============================================================================
+   Swisscom Brand Theme Override for OpenClaw Control UI
+   Based on SDX (Swisscom Design Experience) v3.2.0 design tokens.
+
+   Applied at Docker build time by appending to ui/src/styles/base.css.
+   Overrides all CSS custom properties defined in base.css.
+
+   Colors mapped from:
+     --sdx-color-sc-navy:                #001155
+     --sdx-color-sc-blue:                #11aaff   (#1af)
+     --sdx-color-surface-interaction-default: #0445c8
+     --sdx-color-surface-interaction-hover:   #0036a7
+     --sdx-color-surface-general-emphasis:    #4c93ff
+     --sdx-color-surface-general-muted:       #e8f1ff
+     --sdx-color-text-heading:           #001155
+     --sdx-color-text-body:              #222126
+     --sdx-color-text-neutral-default:   #55545b
+     --sdx-color-border-neutral-1:       #55545b
+     --sdx-color-border-neutral-2:       #cecdd3
+     --sdx-color-surface-ui-1:           #ffffff
+     --sdx-color-surface-ui-2:           #f6f6f9
+     --sdx-color-surface-ui-3:           #f2f1f8
+     --sdx-color-surface-success-emphasis: #5bbf53
+     --sdx-color-surface-warning-emphasis: #f1bf00
+     --sdx-color-surface-error-emphasis:   #ff855a
+   ============================================================================= */
+
+/* Font: prefer TheSans (Swisscom brand font).
+   Corporate users who also access Swisscom B2B portals will have it browser-cached. */
+:root,
+:root[data-theme="dark"],
+:root[data-theme="light"] {
+  --font-body: TheSans, "Helvetica Neue", Arial, sans-serif;
+  --font-display: TheSans, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Dark theme: Swisscom navy palette
+   Replaces the default charcoal/red scheme with Swisscom navy/blue tones. */
+:root,
+:root[data-theme="dark"] {
+  --bg:                #010d2e;
+  --bg-accent:         #001155;
+  --bg-elevated:       #001a66;
+  --bg-hover:          #002288;
+  --bg-muted:          #001a66;
+  --bg-content:        #010d2e;
+
+  --card:              #001155;
+  --card-highlight:    rgba(76, 147, 255, 0.06);
+  --popover:           #001a66;
+  --popover-foreground: #e8f1ff;
+
+  --text:              #c3dbff;
+  --text-strong:       #ffffff;
+  --muted:             #7aafff;
+
+  --border:            #0036a7;
+  --border-strong:     #0445c8;
+  --border-hover:      #4c93ff;
+  --input:             #001a66;
+  --ring:              #4c93ff;
+
+  --accent:            #4c93ff;
+  --accent-hover:      #7aafff;
+  --accent-muted:      #4c93ff;
+  --accent-subtle:     rgba(76, 147, 255, 0.15);
+  --accent-foreground: #ffffff;
+  --accent-glow:       rgba(76, 147, 255, 0.25);
+  --primary:           #0445c8;
+  --primary-foreground: #ffffff;
+
+  --secondary:         #001a66;
+  --secondary-foreground: #e8f1ff;
+
+  --accent-2:          #11aaff;
+  --accent-2-muted:    rgba(17, 170, 255, 0.70);
+  --accent-2-subtle:   rgba(17, 170, 255, 0.15);
+
+  --ok:                #5bbf53;
+  --ok-subtle:         rgba(91, 191, 83, 0.15);
+  --warn:              #f1bf00;
+  --warn-subtle:       rgba(241, 191, 0, 0.15);
+  --error:             #ff855a;
+  --error-subtle:      rgba(255, 133, 90, 0.15);
+
+  --focus-ring:        0 0 0 2px var(--bg), 0 0 0 4px var(--ring);
+  --focus-glow:        0 0 0 2px var(--bg), 0 0 0 4px var(--ring), 0 0 20px var(--accent-glow);
+  --shadow-glow:       0 0 30px var(--accent-glow);
+
+  color-scheme: dark;
+}
+
+/* Light theme: full Swisscom SDX palette
+   This is the primary Swisscom theme — matches the B2B portal look. */
+:root[data-theme="light"] {
+  --bg:                #ffffff;
+  --bg-accent:         #f6f6f9;
+  --bg-elevated:       #ffffff;
+  --bg-hover:          #f2f1f8;
+  --bg-muted:          #f6f6f9;
+  --bg-content:        #f6f6f9;
+
+  --card:              #ffffff;
+  --card-highlight:    rgba(0, 0, 0, 0.03);
+  --popover:           #ffffff;
+  --popover-foreground: #001155;
+
+  --text:              #222126;
+  --text-strong:       #001155;
+  --muted:             #55545b;
+
+  --border:            #cecdd3;
+  --border-strong:     #55545b;
+  --border-hover:      #222126;
+  --input:             #cecdd3;
+  --ring:              #0445c8;
+
+  --accent:            #0445c8;
+  --accent-hover:      #0036a7;
+  --accent-muted:      #0445c8;
+  --accent-subtle:     #e8f1ff;
+  --accent-foreground: #ffffff;
+  --accent-glow:       rgba(4, 69, 200, 0.15);
+  --primary:           #0445c8;
+  --primary-foreground: #ffffff;
+
+  --secondary:         #f6f6f9;
+  --secondary-foreground: #001155;
+
+  --accent-2:          #0eaba9;
+  --accent-2-muted:    rgba(14, 171, 169, 0.75);
+  --accent-2-subtle:   rgba(14, 171, 169, 0.12);
+
+  --ok:                #5bbf53;
+  --ok-subtle:         #d7ffd2;
+  --warn:              #f1bf00;
+  --warn-subtle:       #fff7c9;
+  --error:             #ff855a;
+  --error-subtle:      #fcece5;
+
+  --focus-ring:        0 0 0 2px var(--bg), 0 0 0 4px var(--ring);
+  --focus-glow:        0 0 0 2px var(--bg), 0 0 0 4px var(--ring), 0 0 16px var(--accent-glow);
+  --shadow-glow:       0 0 24px var(--accent-glow);
+
+  color-scheme: light;
+}
+
+/* =============================================================================
+   Brand Name Override — "OPENCLAW" → "Oopsie", "Gateway Dashboard" → "RPA Factory"
+   The logo <img> already resolves to /favicon.svg which is the Swisscom lifeform.
+   Only the text nodes need to be overridden via CSS content injection.
+   ============================================================================= */
+
+.brand-title {
+  font-size: 0 !important;    /* hide original text node */
+  line-height: 0 !important;
+}
+.brand-title::after {
+  content: "Oopsie";
+  font-size: 1rem;
+  line-height: normal;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.brand-sub {
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+.brand-sub::after {
+  content: "RPA Factory";
+  font-size: 0.65rem;
+  line-height: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
